@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\website\HomePageController;
+use App\Http\Controllers\website\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+   // Home Routes
+
+Route::controller(HomePageController::class)->group(function () {
+    Route::get('/', 'index')->name('index');
 });
 
-Route::get('login' ,function (){
-    return 'Login';
+       // Products Routes
+Route::group(['prefix'=>'product' ,'as'=>'product.'],function () {
+    Route::controller(ProductController::class)->group(function () {
+        Route::get('product-details/{id}', 'productDetails')->name('productDetails');
+    });
 });

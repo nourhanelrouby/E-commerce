@@ -3,7 +3,7 @@
     <div class="main_menu">
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
-                <a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a>
+                <a class="navbar-brand logo_h" href=""><img src="{{asset('assets/site/img/logo.png')}}" alt=""></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="icon-bar"></span>
@@ -12,18 +12,18 @@
                 </button>
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-                        <li class="nav-item active"><a class="nav-link" href="{{route('homepage')}}">Home</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="{{route('index')}}">Home</a></li>
                         @if(!auth('web')->user())
-                            <li class="nav-item"><a class="nav-link" href="{{route('register')}}">Register</a></li>
+                            <li class="nav-item"><a class="nav-link" href="">Register</a></li>
                         @endif
                         @if(!auth('web')->user())
-                            <li class="nav-item"><a class="nav-link" href="{{route('login')}}">Login</a></li>
+                            <li class="nav-item"><a class="nav-link" href="">Login</a></li>
                         @endif
                         <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
                     </ul>
 
                     <ul class="nav-shop">
-                        <a href="{{route('users.favorites')}}">
+                        <a href="">
                             <li class="nav-item">
                                 <button>
                                     <i class="ti-heart"></i>
@@ -37,15 +37,8 @@
                                 </button>
                             </li>
                         </a>
-                        <a href="{{route('cart.get.products')}}">
-                            @if(auth('web')->user())
-                                @php
-                                    $cart = \App\Models\Cart::where('user_id',auth('web')->user()->id)->where('is_open',0)->first();
-                                    if($cart){
-                                        $details = \App\Models\CartDetails::where('cart_id',$cart->id)->where('is_open',0)->count();
-                                    }
-                                @endphp
-                            @endif
+                        <a href="">
+
                             <li class="nav-item">
                                 <button>
                                     <i class="ti-shopping-cart"></i>
@@ -68,8 +61,8 @@
                             {{auth('web')->user()->name}}
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="{{route('user.edit.profile',auth('web')->user()->id)}}">Edit Profile</a>
-                            <a class="dropdown-item" href="{{route('user.logout')}}">Logout</a>
+                            <a class="dropdown-item" href="">Edit Profile</a>
+                            <a class="dropdown-item" href="">Logout</a>
                         </div>
                     </div>
                     @endif

@@ -1,5 +1,5 @@
-@extends('layoutes.site.site')
-@section('title','HomePage')
+@extends('website.layouts.site')
+@section('title','Home')
 @section('content')
     <!--================ Hero banner start =================-->
     <section class="hero-banner">
@@ -52,6 +52,9 @@
     <!--================ Hero Carousel end =================-->
 
     <!-- ================ All product section start ================= -->
+
+
+{{--    Popular Items--}}
     <section class="section-margin calc-60px">
         <div class="container">
             <div class="section-intro pb-60px">
@@ -59,41 +62,26 @@
                 <h2>All <span class="section-intro__style">Product</span></h2>
             </div>
             <div class="row">
-                @isset($products)
+                @if($products->count()>0)
                     @foreach($products as $product)
                         <div class="col-md-6 col-lg-4 col-xl-3">
                             <div class="card text-center card-product">
                                 <div class="card-product__img">
-                                    <img class="card-img" src="{{ $product->image }}" alt="">
+                                    <img class="img-fluid" src="{{asset('storage/' . $product->image)}}" alt="">
                                     <ul class="card-product__imgOverlay">
-                                        <form action="{{route('cart.product.add')}}" method="POST">
-                                            @csrf
-                                            @if(auth('web')->user())
-                                                <input type="hidden" name="user_id" value="{{auth('web')->user()->id}}">
-                                            @endif
-                                            <input type="hidden" name="product_id" value="{{$product->id}}">
                                             <li><button type="submit"><i class="ti-shopping-cart"></i></button></li>
-                                        </form>
-                                        <form action="{{route('product.add.fav')}}" method="POST">
-                                            @csrf
-                                            @if(auth('web')->user())
-                                                <input type="hidden" name="user_id" value="{{auth('web')->user()->id}}">
-                                            @endif
-                                            <input type="hidden" name="product_id" value="{{$product->id}}">
                                             <li><button type="submit"><i class="ti-heart"></i></button></li>
-                                        </form>
                                     </ul>
                                 </div>
                                 <div class="card-body">
                                     <p>{{$product->category->name}}</p>
-                                    <h4 class="card-product__title"><a href="{{route('product.details',$product->name)}}">{{$product->name}}</a></h4>
+                                    <h4 class="card-product__title"><a href="{{route('product.productDetails',$product->id)}}">{{$product->name}}</a></h4>
                                     <p class="card-product__price">${{$product->price}}</p>
                                 </div>
                             </div>
                         </div>
                     @endforeach
-                @endisset
-
+                    @endif
             </div>
         </div>
     </section>
@@ -127,7 +115,7 @@
             <div class="owl-carousel owl-theme" id="bestSellerCarousel">
                 <div class="card text-center card-product">
                     <div class="card-product__img">
-                        <img class="img-fluid" src="img/product/product1.png" alt="">
+                        <img class="img-fluid" src="{{asset('assets/site/img/product/product1.png')}}" alt="">
                         <ul class="card-product__imgOverlay">
                             <li><button><i class="ti-search"></i></button></li>
                             <li><button><i class="ti-shopping-cart"></i></button></li>
@@ -136,14 +124,14 @@
                     </div>
                     <div class="card-body">
                         <p>Accessories</p>
-                        <h4 class="card-product__title"><a href="single-product.html">Quartz Belt Watch</a></h4>
+                        <h4 class="card-product__title"><a href="">Quartz Belt Watch</a></h4>
                         <p class="card-product__price">$150.00</p>
                     </div>
                 </div>
 
                 <div class="card text-center card-product">
                     <div class="card-product__img">
-                        <img class="img-fluid" src="img/product/product2.png" alt="">
+                        <img class="img-fluid" src="{{asset('assets/site/img/product/product2.png')}}" alt="">
                         <ul class="card-product__imgOverlay">
                             <li><button><i class="ti-search"></i></button></li>
                             <li><button><i class="ti-shopping-cart"></i></button></li>
@@ -152,14 +140,14 @@
                     </div>
                     <div class="card-body">
                         <p>Beauty</p>
-                        <h4 class="card-product__title"><a href="single-product.html">Women Freshwash</a></h4>
+                        <h4 class="card-product__title"><a href="">Women Freshwash</a></h4>
                         <p class="card-product__price">$150.00</p>
                     </div>
                 </div>
 
                 <div class="card text-center card-product">
                     <div class="card-product__img">
-                        <img class="img-fluid" src="img/product/product3.png" alt="">
+                        <img class="img-fluid" src="{{asset('assets/site/img/product/product3.png')}}" alt="">
                         <ul class="card-product__imgOverlay">
                             <li><button><i class="ti-search"></i></button></li>
                             <li><button><i class="ti-shopping-cart"></i></button></li>
@@ -168,14 +156,14 @@
                     </div>
                     <div class="card-body">
                         <p>Decor</p>
-                        <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
+                        <h4 class="card-product__title"><a href="">Room Flash Light</a></h4>
                         <p class="card-product__price">$150.00</p>
                     </div>
                 </div>
 
                 <div class="card text-center card-product">
                     <div class="card-product__img">
-                        <img class="img-fluid" src="img/product/product4.png" alt="">
+                        <img class="img-fluid" src="{{asset('assets/site/img/product/product4.png')}}" alt="">
                         <ul class="card-product__imgOverlay">
                             <li><button><i class="ti-search"></i></button></li>
                             <li><button><i class="ti-shopping-cart"></i></button></li>
@@ -184,14 +172,14 @@
                     </div>
                     <div class="card-body">
                         <p>Decor</p>
-                        <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
+                        <h4 class="card-product__title"><a href="">Room Flash Light</a></h4>
                         <p class="card-product__price">$150.00</p>
                     </div>
                 </div>
 
                 <div class="card text-center card-product">
                     <div class="card-product__img">
-                        <img class="img-fluid" src="img/product/product1.png" alt="">
+                        <img class="img-fluid" src="{{asset('assets/site/img/product/product1.png')}}" alt="">
                         <ul class="card-product__imgOverlay">
                             <li><button><i class="ti-search"></i></button></li>
                             <li><button><i class="ti-shopping-cart"></i></button></li>
@@ -200,58 +188,11 @@
                     </div>
                     <div class="card-body">
                         <p>Accessories</p>
-                        <h4 class="card-product__title"><a href="single-product.html">Quartz Belt Watch</a></h4>
+                        <h4 class="card-product__title"><a href="">Quartz Belt Watch</a></h4>
                         <p class="card-product__price">$150.00</p>
                     </div>
                 </div>
 
-                <div class="card text-center card-product">
-                    <div class="card-product__img">
-                        <img class="img-fluid" src="img/product/product2.png" alt="">
-                        <ul class="card-product__imgOverlay">
-                            <li><button><i class="ti-search"></i></button></li>
-                            <li><button><i class="ti-shopping-cart"></i></button></li>
-                            <li><button><i class="ti-heart"></i></button></li>
-                        </ul>
-                    </div>
-                    <div class="card-body">
-                        <p>Beauty</p>
-                        <h4 class="card-product__title"><a href="single-product.html">Women Freshwash</a></h4>
-                        <p class="card-product__price">$150.00</p>
-                    </div>
-                </div>
-
-                <div class="card text-center card-product">
-                    <div class="card-product__img">
-                        <img class="img-fluid" src="img/product/product3.png" alt="">
-                        <ul class="card-product__imgOverlay">
-                            <li><button><i class="ti-search"></i></button></li>
-                            <li><button><i class="ti-shopping-cart"></i></button></li>
-                            <li><button><i class="ti-heart"></i></button></li>
-                        </ul>
-                    </div>
-                    <div class="card-body">
-                        <p>Decor</p>
-                        <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
-                        <p class="card-product__price">$150.00</p>
-                    </div>
-                </div>
-
-                <div class="card text-center card-product">
-                    <div class="card-product__img">
-                        <img class="img-fluid" src="img/product/product4.png" alt="">
-                        <ul class="card-product__imgOverlay">
-                            <li><button><i class="ti-search"></i></button></li>
-                            <li><button><i class="ti-shopping-cart"></i></button></li>
-                            <li><button><i class="ti-heart"></i></button></li>
-                        </ul>
-                    </div>
-                    <div class="card-body">
-                        <p>Decor</p>
-                        <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
-                        <p class="card-product__price">$150.00</p>
-                    </div>
-                </div>
             </div>
         </div>
     </section>

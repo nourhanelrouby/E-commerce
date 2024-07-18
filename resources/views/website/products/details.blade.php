@@ -1,4 +1,4 @@
-@extends('layoutes.site.site')
+@extends('website.layouts.site')
 @section('title',$product->name)
 @section('content')
     <!--================Single Product details =================-->
@@ -8,7 +8,7 @@
                 <div class="col-lg-6">
                     <div class="owl-carousel owl-theme s_Product_carousel">
                         <div class="single-prd-item">
-                            <img class="img-fluid" src="{{$product->image}}" alt="">
+                            <img class="img-fluid" src="{{asset('storage/' . $product->image)}}" alt="">
                         </div>
                         <!-- <div class="single-prd-item">
                             <img class="img-fluid" src="img/category/s-p1.jpg" alt="">
@@ -24,7 +24,7 @@
                         <h2>${{$product->price}}</h2>
                         <ul class="list">
                             <li><a class="active" href="#"><span>Category</span> : {{$product->category->name}}</a></li>
-                            <li><a href="#"><span>Qantty</span> : {{$product->qty}}</a></li>
+                            <li><a href="#"><span>Quantity</span> : {{$product->stock}}</a></li>
                         </ul>
                         <p>{{$product->description}}</p>
                         <div class="product_count">

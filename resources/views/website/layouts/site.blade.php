@@ -17,13 +17,13 @@
 </head>
     <body>
     <main class="site-main">
-        @include('layoutes.site.header')
+        @include('website.layouts.header')
 
         @yield('content')
 
-        @include('layoutes.site.subscribe')
+        @include('website.layouts.subscribe')
     </main>
-        @include('layoutes.site.footer')
+        @include('website.layouts.footer')
     <script src="{{asset('assets/site/vendors/jquery/jquery-3.2.1.min.js')}}"></script>
     <script src="{{asset('assets/site/vendors/bootstrap/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('assets/site/vendors/skrollr.min.js')}}"></script>

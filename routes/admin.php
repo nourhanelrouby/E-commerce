@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-    Route::controller(\App\Http\Controllers\admin\AdminController::class)->group(function () {
+    Route::controller(AdminController::class)->group(function () {
         // Login
         Route::middleware('guest:admin')->group(function () {
             Route::get('login', 'login')->name('login');
@@ -20,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 
             // Category Routes
             Route::group(['prefix' => 'category', 'as' => 'category.'], function () {
-                Route::controller(\App\Http\Controllers\admin\CategoryController::class)->group(function () {
+                Route::controller(CategoryController::class)->group(function () {
                     Route::get('index', 'index')->name('index');
                     Route::post('store', 'store')->name('store');
                     Route::put('update/{id}', 'update')->name('update');
@@ -29,7 +32,7 @@ use Illuminate\Support\Facades\Route;
             });
             // Products Routes
             Route::group(['prefix' => 'product', 'as' => 'product.'], function () {
-                Route::controller(\App\Http\Controllers\admin\ProductController::class)->group(function () {
+                Route::controller(ProductController::class)->group(function () {
                     Route::get('index', 'index')->name('index');
                     Route::post('store', 'store')->name('store');
                     Route::put('update/{id}', 'update')->name('update');
