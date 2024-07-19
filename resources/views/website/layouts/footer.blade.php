@@ -19,7 +19,7 @@
                     <div class="single-footer-widget tp_widgets">
                         <h4 class="footer_title">Quick Links</h4>
                         <ul class="list">
-                            <li><a href="#">Home</a></li>
+                            <li><a href="{{route('index')}}">Home</a></li>
                             <li><a href="#">Shop</a></li>
                             <li><a href="#">Blog</a></li>
                             <li><a href="#">Product</a></li>

@@ -146,6 +146,18 @@
                                             <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
+                                        <div class="col-12">
+                                            <label for="projectinput1"> Choose Main Category</label>
+                                            <select name="parent" class="select2 form-control">
+                                                <option value="">--Choose Category</option>
+                                                @foreach($categories as $category)
+                                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('parent')
+                                            <span class="text-danger"> {{$message}}</span>
+                                            @enderror
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"

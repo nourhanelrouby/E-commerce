@@ -11,9 +11,9 @@ class HomePageController extends Controller
     public function index()
     {
 
-        $products =  Product::with(['category'=>function ($q) {
-            $q->select('id','name');
-        }])->where('status',true)->get(['id' ,'name','price','image','category_id']);
+        $products = Product::with(['category' => function ($q) {
+            $q->select('id', 'name');
+        }])->where('status', true)->get(['id', 'name', 'price', 'image', 'category_id']);
         return view('website.homepage', [
             'products' => $products
         ]);

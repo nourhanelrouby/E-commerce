@@ -22,11 +22,12 @@ class UserSignupRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
+            'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:8|confirmed',
-            'address' => 'required',
-            'phone' => 'required|min:11|unique:users,phone',
+            'password' => 'required|string|min:8|confirmed',
+            'address' => 'required|string|max:255',
+            'phone' => 'required|string|min:11|unique:users,phone',
         ];
+
     }
 }

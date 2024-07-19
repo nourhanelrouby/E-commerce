@@ -59,9 +59,9 @@
                         <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
                             <div class="single-search-product-wrapper">
                                 <div class="single-search-product d-flex">
-                                    <a href="#"><img src="{{$product->image}}" alt=""></a>
+                                    <a href="#"><img src="{{asset('storage/' . $product->image)}}" alt=""></a>
                                     <div class="desc">
-                                        <a href="{{route('product.details',$product->name)}}" class="title">{{$product->name}}</a>
+                                        <a href="{{route('product.productDetails',$product->id)}}" class="title">{{$product->name}}</a>
                                         <div class="price">${{$product->price}}</div>
                                     </div>
                                 </div>

@@ -1,4 +1,4 @@
-    @extends('layoutes.site.site')
+    @extends('website.layouts.site')
     @section('title','Edit Profile ' . $user->name)
     @section('content')
         <section class="login_box_area section-margin">
@@ -8,14 +8,14 @@
                         <div class="login_box_img">
                             <div class="hover">
                                 <h4>Edit profile page</h4>
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem labore, fugiat, quo, ipsa nisi laborum omnis cum officiis nemo quia dignissimos eveniet quas possimus!</p>
+                                <p>Edit {{$user->name}} Account</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="login_form_inner register_form_inner">
                             <h3>Edit profile {{$user->name}}</h3>
-                            <form class="row login_form" action="{{route('user.update.profile')}}" method="POST" id="register_form">
+                            <form class="row login_form" action="{{route('updateProfile')}}" method="POST" id="register_form">
                                 @csrf
                                 <input type="hidden" name="id" value="{{$user->id}}">
                                 <div class="col-md-12 form-group">
@@ -25,8 +25,8 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-12 form-group">
-                                    <input value="{{$user->phone_number}}" type="text" class="form-control @error('phone_number') is-invalid @enderror" id="phone_number" name="phone_number" placeholder="phone number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'phone number'">
-                                    @error('phone_number')
+                                    <input value="{{$user->phone}}" type="text" class="form-control @error('phone') is-invalid @enderror" id="phone_number" name="phone" placeholder="phone number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'phone number'">
+                                    @error('phone')
                                     <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                                     @enderror
                                 </div>

@@ -70,7 +70,14 @@
                                     <img class="img-fluid" src="{{asset('storage/' . $product->image)}}" alt="">
                                     <ul class="card-product__imgOverlay">
                                             <li><button type="submit"><i class="ti-shopping-cart"></i></button></li>
+                                        <form action="{{route('product.addFavorite')}}" method="POST">
+                                            @csrf
+                                            @if(auth('user')->user())
+                                            <input type="hidden" name="user_id" value="{{Auth::guard('user')->user()->id}}">
+                                            @endif
+                                            <input type="hidden" name="product_id" value="{{$product->id}}">
                                             <li><button type="submit"><i class="ti-heart"></i></button></li>
+                                        </form>
                                     </ul>
                                 </div>
                                 <div class="card-body">
